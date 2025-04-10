@@ -1,5 +1,3 @@
-// src/core/domain/repositories/rental.repository.ts
-
 import { Rental } from '../entities/rental.entity';
 
 export interface RentalRepository {

@@ -1,5 +1,3 @@
-// src/core/application/services/rental.service.ts
-
 import { Injectable, Inject, BadRequestException, NotFoundException, ConflictException } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 

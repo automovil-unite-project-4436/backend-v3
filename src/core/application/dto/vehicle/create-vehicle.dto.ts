@@ -1,5 +1,3 @@
-// src/core/application/dto/vehicle/create-vehicle.dto.ts
-
 import { 
     IsNotEmpty, 
     IsString, 

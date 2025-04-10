@@ -1,5 +1,3 @@
-// src/infrastructure/database/mappers/rental.mapper.ts
-
 import { Injectable } from '@nestjs/common';
 import { Rental } from '../../../core/domain/entities/rental.entity';
 import { RentalEntity } from '../entities/rental.entity';

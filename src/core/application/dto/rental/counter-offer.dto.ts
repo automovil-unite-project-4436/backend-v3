@@ -1,5 +1,3 @@
-// src/core/application/dto/rental/counter-offer.dto.ts
-
 import { IsNotEmpty, IsNumber, IsPositive, Min } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';

@@ -1,5 +1,3 @@
-// src/infrastructure/database/entities/vehicle.entity.ts
-
 import { 
   Entity, 
   PrimaryGeneratedColumn, 

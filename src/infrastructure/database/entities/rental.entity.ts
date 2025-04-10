@@ -1,5 +1,3 @@
-// src/infrastructure/database/entities/rental.entity.ts
-
 import {
   Entity,
   PrimaryGeneratedColumn,

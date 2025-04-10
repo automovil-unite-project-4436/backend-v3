@@ -1,5 +1,3 @@
-// src/presentation/controllers/review.controller.ts
-
 import {
     Controller,
     Get,

@@ -1,5 +1,3 @@
-// src/infrastructure/security/security.module.ts
-
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TwoFactorAuthService } from 'src/infrastructure/security/two-factor-auth.service';

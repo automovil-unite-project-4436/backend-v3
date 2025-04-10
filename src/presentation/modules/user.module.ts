@@ -1,5 +1,3 @@
-// src/presentation/modules/user/user.module.ts
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserService } from 'src/core/domain/services/user.service';

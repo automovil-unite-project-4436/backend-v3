@@ -1,5 +1,3 @@
-// src/core/application/services/notification.service.ts
-
 import { Injectable, Inject } from '@nestjs/common';
 
 import { UserRepository } from '../../domain/repositories/user.repository';

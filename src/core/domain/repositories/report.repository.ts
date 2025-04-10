@@ -1,5 +1,3 @@
-// src/core/domain/repositories/report.repository.ts
-
 import { Report } from '../entities/report.entity';
 
 export interface ReportRepository {

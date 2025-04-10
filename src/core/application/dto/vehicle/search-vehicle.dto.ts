@@ -1,5 +1,3 @@
-// src/core/application/dto/vehicle/search-vehicle.dto.ts
-
 import { 
     IsOptional, 
     IsString, 

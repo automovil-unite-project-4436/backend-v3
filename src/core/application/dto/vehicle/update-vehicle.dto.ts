@@ -1,5 +1,3 @@
-// src/core/application/dto/vehicle/update-vehicle.dto.ts
-
 import { 
     IsOptional, 
     IsString, 

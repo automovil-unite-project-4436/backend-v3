@@ -1,5 +1,3 @@
-// src/infrastructure/database/entities/notification.entity.ts
-
 import { 
     Entity, 
     PrimaryGeneratedColumn, 

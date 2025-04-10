@@ -1,5 +1,3 @@
-// src/presentation/validators/file-validators.ts
-
 import { BadRequestException } from '@nestjs/common';
 
 // Validador para imágenes (jpg, jpeg, png)

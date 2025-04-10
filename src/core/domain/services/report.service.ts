@@ -1,5 +1,3 @@
-// src/core/application/services/report.service.ts
-
 import { Injectable, Inject, BadRequestException, NotFoundException } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 

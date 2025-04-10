@@ -1,5 +1,3 @@
-// src/infrastructure/database/mappers/notification.mapper.ts
-
 import { Injectable } from '@nestjs/common';
 import { Notification } from '../../../core/domain/entities/notification.entity';
 import { NotificationEntity } from '../entities/notification.entity';

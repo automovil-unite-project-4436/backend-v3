@@ -1,5 +1,3 @@
-// src/core/application/dto/rental/verify-payment.dto.ts
-
 import { IsNotEmpty, IsString, Length } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 

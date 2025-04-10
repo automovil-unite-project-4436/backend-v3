@@ -1,5 +1,3 @@
-// src/core/application/dto/rental/extend-rental.dto.ts
-
 import { IsNotEmpty, IsDateString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 

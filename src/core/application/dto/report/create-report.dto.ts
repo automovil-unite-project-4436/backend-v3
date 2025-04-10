@@ -1,5 +1,3 @@
-// src/core/application/dto/report/create-report.dto.ts
-
 import { 
     IsNotEmpty, 
     IsString, 

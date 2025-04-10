@@ -1,5 +1,3 @@
-// src/core/application/dto/auth/register.dto.ts
-
 import { 
     IsEmail, 
     IsEnum, 

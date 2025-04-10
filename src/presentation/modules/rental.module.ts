@@ -1,5 +1,3 @@
-// src/presentation/modules/rental/rental.module.ts
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RentalService } from 'src/core/domain/services/rental.service';

@@ -1,5 +1,3 @@
-// src/core/domain/entities/user.entity.ts
-
 import { UserRole } from "../enums/user-role.enum";
 import { UserStatus } from "../enums/user-status.enum";
 

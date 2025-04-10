@@ -1,5 +1,3 @@
-// src/core/domain/entities/vehicle.entity.ts
-
 import { FuelType } from "../enums/fuel-type.enum";
 import { TransmissionType } from "../enums/transmission-type.enum";
 import { VehicleStatus } from "../enums/vehicle-status.enum";

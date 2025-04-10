@@ -1,5 +1,3 @@
-// src/core/application/dto/review/create-review.dto.ts
-
 import { 
     IsNotEmpty, 
     IsString, 

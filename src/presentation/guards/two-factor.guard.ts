@@ -1,5 +1,3 @@
-// src/presentation/guards/two-factor.guard.ts
-
 import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
 
 @Injectable()

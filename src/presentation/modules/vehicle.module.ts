@@ -1,5 +1,3 @@
-// src/presentation/modules/vehicle/vehicle.module.ts
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { VehicleService } from 'src/core/domain/services/vehicle.service';

@@ -1,5 +1,3 @@
-// src/core/application/services/user.service.ts
-
 import {
   Injectable,
   Inject,

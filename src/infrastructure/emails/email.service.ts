@@ -1,5 +1,3 @@
-// src/infrastructure/emails/email.service.ts
-
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as nodemailer from 'nodemailer';
@@ -30,7 +28,7 @@ export class EmailService {
   }
 
   async sendTwoFactorAuthCode(email: string, code: string): Promise<void> {
-    const subject = 'Código de verificación - Car Rental App';
+    const subject = 'Código de verificación - Automovil-Unite App';
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2>Código de verificación</h2>
@@ -40,7 +38,7 @@ export class EmailService {
         </div>
         <p>Este código expirará en 5 minutos.</p>
         <p>Si no solicitaste este código, puedes ignorar este correo.</p>
-        <p>Saludos,<br>El equipo de Car Rental App</p>
+        <p>Saludos,<br>El equipo de Vision Rent</p>
       </div>
     `;
     
@@ -64,7 +62,7 @@ export class EmailService {
 
   async sendPasswordResetEmail(email: string, token: string): Promise<void> {
     const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;
-    const subject = 'Recuperación de contraseña - Car Rental App';
+    const subject = 'Recuperación de contraseña - Automovil-Unite App';
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2>Recuperación de contraseña</h2>
@@ -72,7 +70,7 @@ export class EmailService {
         <p><a href="${resetLink}" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Restablecer contraseña</a></p>
         <p>Este enlace expirará en 1 hora.</p>
         <p>Si no solicitaste restablecer tu contraseña, puedes ignorar este correo.</p>
-        <p>Saludos,<br>El equipo de Car Rental App</p>
+        <p>Saludos,<br>El equipo de Vision Rent</p>
       </div>
     `;
     
@@ -80,10 +78,10 @@ export class EmailService {
   }
 
   async sendWelcomeEmail(user: User): Promise<void> {
-    const subject = 'Bienvenido a Car Rental App';
+    const subject = 'Bienvenido a Automovil-Unite App';
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2>¡Bienvenido a Car Rental App, ${user.firstName}!</h2>
+        <h2>¡Bienvenido a Automovil-Unite App, ${user.firstName}!</h2>
         <p>Gracias por registrarte en nuestra plataforma.</p>
         <p>Para completar tu perfil, no olvides subir los siguientes documentos:</p>
         <ul>
@@ -93,7 +91,7 @@ export class EmailService {
           <li>Foto de perfil</li>
         </ul>
         <p>Una vez verificada tu cuenta, podrás comenzar a ${user.isRenter() ? 'alquilar vehículos' : 'publicar tus vehículos para alquiler'}.</p>
-        <p>Saludos,<br>El equipo de Car Rental App</p>
+        <p>Saludos,<br>El equipo de Vision Rent</p>
       </div>
     `;
     
@@ -101,7 +99,7 @@ export class EmailService {
   }
 
   async sendRentalPaymentReminderEmail(rental: Rental, renter: User, vehicle: Vehicle): Promise<void> {
-    const subject = 'Recordatorio de pago - Car Rental App';
+    const subject = 'Recordatorio de pago - Automovil-Unite App';
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2>Recordatorio de pago</h2>
@@ -118,7 +116,7 @@ export class EmailService {
         
         <p>Por favor, coordina con el propietario para realizar el pago lo antes posible.</p>
         
-        <p>Saludos,<br>El equipo de Car Rental App</p>
+        <p>Saludos,<br>El equipo de Vision Rent</p>
       </div>
     `;
     
@@ -126,7 +124,7 @@ export class EmailService {
   }
 
   async sendRentalReturnReminderEmail(rental: Rental, renter: User, vehicle: Vehicle): Promise<void> {
-    const subject = 'Recordatorio de devolución - Car Rental App';
+    const subject = 'Recordatorio de devolución - Automovil-Unite App';
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2>Recordatorio de devolución</h2>
@@ -140,7 +138,7 @@ export class EmailService {
         
         <p>Por favor, asegúrate de devolver el vehículo a tiempo para evitar cargos adicionales y restricciones en futuros alquileres.</p>
         
-        <p>Saludos,<br>El equipo de Car Rental App</p>
+        <p>Saludos,<br>El equipo de Vision Rent</p>
       </div>
     `;
     
@@ -148,7 +146,7 @@ export class EmailService {
   }
 
   async sendReviewRequestEmail(rental: Rental, renter: User, vehicle: Vehicle): Promise<void> {
-    const subject = 'Valora tu experiencia - Car Rental App';
+    const subject = 'Valora tu experiencia - Automovil-UniteAutomovil-Unite App';
     const reviewLink = `${process.env.FRONTEND_URL}/rentals/${rental.id}/review`;
     
     const html = `
@@ -163,7 +161,7 @@ export class EmailService {
         </p>
         
         <p>Gracias por utilizar nuestra plataforma.</p>
-        <p>Saludos,<br>El equipo de Car Rental App</p>
+        <p>Saludos,<br>El equipo de Vision Rent</p>
       </div>
     `;
     
@@ -171,13 +169,13 @@ export class EmailService {
   }
 
   async sendNotificationEmail(user: User, title: string, message: string): Promise<void> {
-    const subject = `${title} - Car Rental App`;
+    const subject = `${title} - Automovil-Unite App`;
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2>${title}</h2>
         <p>Estimado/a ${user.firstName},</p>
         <p>${message}</p>
-        <p>Saludos,<br>El equipo de Car Rental App</p>
+        <p>Saludos,<br>El equipo de Vision Rent</p>
       </div>
     `;
     
@@ -185,7 +183,7 @@ export class EmailService {
   }
 
   async sendRentalConfirmation(rental: Rental, renter: User, vehicle: Vehicle, owner: User): Promise<void> {
-    const subject = 'Confirmación de Alquiler - Car Rental App';
+    const subject = 'Confirmación de Alquiler - Automovil-Unite App';
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2>Confirmación de Alquiler</h2>
@@ -215,14 +213,14 @@ export class EmailService {
         
         <p>Recuerda que debes coordinar directamente con el propietario para el pago y la entrega del vehículo.</p>
         
-        <p>Saludos,<br>El equipo de Car Rental App</p>
+        <p>Saludos,<br>El equipo de Vision Rent</p>
       </div>
     `;
     
     await this.sendEmail(renter.email, subject, html);
     
     // También enviar email al propietario
-    const ownerSubject = 'Nueva solicitud de alquiler - Car Rental App';
+    const ownerSubject = 'Nueva solicitud de alquiler - Automovil-Unite App';
     const ownerHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2>Nueva solicitud de alquiler</h2>
@@ -246,7 +244,7 @@ export class EmailService {
         
         <p>Recuerda solicitar el código de verificación al arrendatario al momento de entregar el vehículo para confirmar el pago.</p>
         
-        <p>Saludos,<br>El equipo de Car Rental App</p>
+        <p>Saludos,<br>El equipo de Vision Rent</p>
       </div>
     `;
     

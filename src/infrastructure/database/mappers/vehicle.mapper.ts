@@ -1,5 +1,3 @@
-// src/infrastructure/database/mappers/vehicle.mapper.ts
-
 import { Injectable } from '@nestjs/common';
 import { Vehicle } from '../../../core/domain/entities/vehicle.entity';
 import { VehicleEntity } from '../entities/vehicle.entity';

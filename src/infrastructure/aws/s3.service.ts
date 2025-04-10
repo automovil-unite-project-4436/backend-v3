@@ -1,5 +1,3 @@
-// src/infrastructure/aws/s3.service.ts
-
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { S3Client, PutObjectCommand, DeleteObjectCommand, ObjectCannedACL } from '@aws-sdk/client-s3';
@@ -15,14 +13,14 @@ export class S3Service {
   constructor(private readonly configService: ConfigService) {
     // Inicializar el cliente S3 con las credenciales y región
     this.s3Client = new S3Client({
-      region: this.configService.get<string>('aws.region') || 'sa-east-1',
+      region: this.configService.get<string>('aws.region') || '',
       credentials: {
         accessKeyId: this.configService.get<string>('aws.accessKeyId') || '',
         secretAccessKey: this.configService.get<string>('aws.secretAccessKey') || '',
       },
     });
     
-    this.bucketName = this.configService.get<string>('aws.s3.bucketName') || 'car-rental-app';
+    this.bucketName = this.configService.get<string>('aws.s3.bucketName') || '';
   }
 
   async uploadFile(

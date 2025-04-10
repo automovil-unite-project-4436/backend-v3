@@ -1,5 +1,3 @@
-// src/infrastructure/database/mappers/report.mapper.ts
-
 import { Injectable } from '@nestjs/common';
 import { Report } from '../../../core/domain/entities/report.entity';
 import { ReportEntity } from '../entities/report.entity';

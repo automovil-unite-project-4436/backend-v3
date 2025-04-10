@@ -1,5 +1,3 @@
-// src/core/application/dto/rental/create-rental.dto.ts
-
 import { 
     IsNotEmpty, 
     IsUUID, 

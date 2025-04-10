@@ -1,5 +1,3 @@
-// src/presentation/controllers/rental.controller.ts
-
 import {
   Controller,
   Get,

@@ -1,5 +1,3 @@
-// src/presentation/modules/review/review.module.ts
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ReviewService } from 'src/core/domain/services/review.service';

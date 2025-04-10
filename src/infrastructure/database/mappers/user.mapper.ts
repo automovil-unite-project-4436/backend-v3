@@ -1,5 +1,3 @@
-// src/infrastructure/database/mappers/user.mapper.ts
-
 import { Injectable } from '@nestjs/common';
 import { User } from '../../../core/domain/entities/user.entity';
 import { UserEntity } from '../entities/user.entity';

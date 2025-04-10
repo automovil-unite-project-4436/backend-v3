@@ -1,5 +1,3 @@
-// src/core/domain/enums/image-category.enum.ts
-
 export enum ImageCategory {
     PROFILE = 'profile',
     DOCUMENT = 'document',

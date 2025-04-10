@@ -1,5 +1,3 @@
-// src/presentation/controllers/user.controller.ts
-
 import {
   Controller,
   Get,

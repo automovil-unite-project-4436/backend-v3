@@ -1,5 +1,3 @@
-// src/core/domain/entities/report.entity.ts
-
 import { ReportStatus } from '../enums/report-status.enum';
 import { ReportSeverity } from '../enums/report-severity.enum';
 

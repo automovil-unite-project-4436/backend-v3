@@ -1,5 +1,3 @@
-// src/infrastructure/database/repositories/typeorm-vehicle.repository.ts
-
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Between, MoreThanOrEqual, LessThanOrEqual, In } from 'typeorm';
@@ -8,6 +6,7 @@ import { Vehicle } from '../../../core/domain/entities/vehicle.entity';
 import { VehicleEntity } from '../entities/vehicle.entity';
 import { VehicleMapper } from '../mappers/vehicle.mapper';
 import { VehicleStatus } from '../../../core/domain/enums/vehicle-status.enum';
+import { User } from 'src/core/domain/entities/user.entity';
 
 @Injectable()
 export class TypeOrmVehicleRepository implements VehicleRepository {
@@ -16,6 +15,9 @@ export class TypeOrmVehicleRepository implements VehicleRepository {
     private readonly vehicleRepository: Repository<VehicleEntity>,
     private readonly vehicleMapper: VehicleMapper,
   ) {}
+  sendNotificationEmail(owner: User, arg1: string, arg2: string): unknown {
+    throw new Error('Method not implemented.');
+  }
 
   async findById(id: string): Promise<Vehicle | null> {
     const vehicleEntity = await this.vehicleRepository.findOne({ 

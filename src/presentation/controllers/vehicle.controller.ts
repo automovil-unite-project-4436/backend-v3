@@ -1,5 +1,3 @@
-// src/presentation/controllers/vehicle.controller.ts
-
 import {
   Controller,
   Get,
@@ -16,6 +14,7 @@ import {
   UseInterceptors,
   UploadedFile,
   UploadedFiles,
+  Patch,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -28,7 +27,6 @@ import {
   ApiBody,
 } from '@nestjs/swagger';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-
 
 import { CreateVehicleDto } from '../../core/application/dto/vehicle/create-vehicle.dto';
 import { UpdateVehicleDto } from '../../core/application/dto/vehicle/update-vehicle.dto';
@@ -500,5 +498,116 @@ export class VehicleController {
       isAvailable: availability.isAvailable,
       conflictingDates: availability.conflictingDates,
     };
+  }
+  @Patch(':id/verify')
+  @UseGuards(JwtAuthGuard, TwoFactorGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Verificar un vehículo (solo admin)' })
+  @ApiResponse({ status: 200, description: 'Vehículo verificado' })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
+  @ApiResponse({ status: 403, description: 'Prohibido - No es administrador' })
+  @ApiResponse({ status: 404, description: 'Vehículo no encontrado' })
+  @ApiParam({ name: 'id', description: 'ID del vehículo' })
+  async verifyVehicle(
+    @Param('id') id: string,
+    @Body('approved') approved: boolean,
+    @Body('notes') notes?: string,
+  ) {
+    if (approved) {
+      const vehicle = await this.vehicleService.verifyVehicle(id);
+      return {
+        message: 'Vehículo verificado correctamente',
+        vehicle: {
+          id: vehicle.id,
+          brand: vehicle.brand,
+          model: vehicle.model,
+          status: vehicle.status,
+        },
+      };
+    } else {
+      const vehicle = await this.vehicleService.rejectVehicle(id, notes);
+      return {
+        message: 'Vehículo rechazado',
+        vehicle: {
+          id: vehicle.id,
+          brand: vehicle.brand,
+          model: vehicle.model,
+          status: vehicle.status,
+          rejectionNotes: notes,
+        },
+      };
+    }
+  }
+
+  @Patch(':id/availability')
+  @UseGuards(JwtAuthGuard, TwoFactorGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Cambiar disponibilidad de un vehículo' })
+  @ApiResponse({ status: 200, description: 'Disponibilidad actualizada' })
+  @ApiResponse({
+    status: 400,
+    description: 'No se puede cambiar la disponibilidad',
+  })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
+  @ApiResponse({ status: 403, description: 'Prohibido - No es el propietario' })
+  @ApiResponse({ status: 404, description: 'Vehículo no encontrado' })
+  @ApiParam({ name: 'id', description: 'ID del vehículo' })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        isAvailable: {
+          type: 'boolean',
+          description: 'Indica si el vehículo está disponible para alquilar',
+        },
+      },
+      required: ['isAvailable'],
+    },
+  })
+  async setAvailability(
+    @Param('id') id: string,
+    @Body('isAvailable') isAvailable: boolean,
+    @AuthUser('id') userId: string,
+  ) {
+    // Verificar si el vehículo existe
+    const vehicle = await this.vehicleService.getVehicleById(id);
+
+    if (!vehicle) {
+      throw new NotFoundException('Vehículo no encontrado');
+    }
+
+    // Verificar si es el propietario
+    if (vehicle.ownerId !== userId) {
+      throw new ForbiddenException(
+        'No tienes permiso para modificar este vehículo',
+      );
+    }
+
+    // Verificar si el vehículo puede cambiar su disponibilidad
+    if (isAvailable && !vehicle.canBeRented()) {
+      throw new BadRequestException(
+        'Este vehículo no puede ser marcado como disponible actualmente porque:' +
+          (!vehicle.isVerified() ? ' No está verificado.' : '') +
+          (vehicle.lastRentalEndDate &&
+          this.isWithin24Hours(vehicle.lastRentalEndDate)
+            ? ' Debe pasar al menos 24 horas desde el último alquiler.'
+            : ''),
+      );
+    }
+
+    await this.vehicleService.updateVehicleAvailability(id, isAvailable);
+
+    return {
+      message: `Vehículo marcado como ${isAvailable ? 'disponible' : 'no disponible'} correctamente`,
+    };
+  }
+
+  // Método auxiliar
+  private isWithin24Hours(date: Date): boolean {
+    const now = new Date();
+    const diffTime = now.getTime() - date.getTime();
+    const diffHours = diffTime / (1000 * 60 * 60);
+    return diffHours < 24;
   }
 }

@@ -1,5 +1,3 @@
-// src/infrastructure/database/repositories/typeorm-notification.repository.ts
-
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, LessThan, MoreThan, Between } from 'typeorm';

@@ -1,5 +1,3 @@
-// src/core/domain/entities/review.entity.ts
-
 import { ReviewType } from '../enums/review-type.enum';
 
 export class Review {

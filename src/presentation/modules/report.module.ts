@@ -1,5 +1,3 @@
-// src/presentation/modules/report/report.module.ts
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ReportService } from 'src/core/domain/services/report.service';

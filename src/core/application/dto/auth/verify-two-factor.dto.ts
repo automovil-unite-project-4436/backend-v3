@@ -1,5 +1,3 @@
-// src/core/application/dto/auth/verify-two-factor.dto.ts
-
 import { IsNotEmpty, IsString, IsUUID, Length } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 

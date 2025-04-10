@@ -1,5 +1,3 @@
-// src/core/application/services/vehicle.service.ts
-
 import { Injectable, Inject, BadRequestException, NotFoundException, ConflictException } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -299,4 +297,50 @@ export class VehicleService {
     
     return { isAvailable: true };
   }
+
+  async verifyVehicle(id: string): Promise<Vehicle> {
+    const vehicle = await this.vehicleRepository.findById(id);
+    
+    if (!vehicle) {
+      throw new NotFoundException('Vehículo no encontrado');
+    }
+    
+    vehicle.status = VehicleStatus.VERIFIED;
+    
+    // Notificar al propietario
+    const owner = await this.userRepository.findById(vehicle.ownerId);
+    if (owner) {
+      await this.vehicleRepository.sendNotificationEmail(
+        owner,
+        'Vehículo verificado',
+        `Tu vehículo ${vehicle.brand} ${vehicle.model} ha sido verificado y ahora está disponible para alquileres.`
+      );
+    }
+    
+    return this.vehicleRepository.update(vehicle);
+  }
+  
+  async rejectVehicle(id: string, notes?: string): Promise<Vehicle> {
+    const vehicle = await this.vehicleRepository.findById(id);
+    
+    if (!vehicle) {
+      throw new NotFoundException('Vehículo no encontrado');
+    }
+    
+    vehicle.status = VehicleStatus.REJECTED;
+    
+    // Notificar al propietario
+    const owner = await this.userRepository.findById(vehicle.ownerId);
+    if (owner) {
+      await this.vehicleRepository.sendNotificationEmail(
+        owner,
+        'Vehículo rechazado',
+        `Tu vehículo ${vehicle.brand} ${vehicle.model} ha sido rechazado.${notes ? ` Motivo: ${notes}` : ''}`
+      );
+    }
+    
+    return this.vehicleRepository.update(vehicle);
+  }
+  
+
 }

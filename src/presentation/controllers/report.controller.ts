@@ -1,5 +1,3 @@
-// src/presentation/controllers/report.controller.ts
-
 import {
   Controller,
   Get,

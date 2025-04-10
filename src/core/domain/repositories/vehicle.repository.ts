@@ -1,8 +1,8 @@
-// src/core/domain/repositories/vehicle.repository.ts
-
+import { User } from '../entities/user.entity';
 import { Vehicle } from '../entities/vehicle.entity';
 
 export interface VehicleRepository {
+  sendNotificationEmail(owner: User, arg1: string, arg2: string): unknown;
   findById(id: string): Promise<Vehicle | null>;
   findByOwnerId(ownerId: string, page?: number, limit?: number): Promise<{ vehicles: Vehicle[]; count: number; totalPages: number }>;
   findAvailable(
@@ -30,4 +30,5 @@ export interface VehicleRepository {
   updateLastRentalDate(id: string, endDate: Date): Promise<void>;
   findByLicensePlate(licensePlate: string): Promise<Vehicle | null>;
   delete(id: string): Promise<void>;
+
 }

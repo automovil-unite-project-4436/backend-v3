@@ -1,5 +1,3 @@
-// src/presentation/modules/notification/notification.module.ts
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ScheduleModule } from '@nestjs/schedule';

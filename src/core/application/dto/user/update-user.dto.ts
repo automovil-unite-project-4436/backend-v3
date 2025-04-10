@@ -1,5 +1,3 @@
-// src/core/application/dto/user/update-user.dto.ts
-
 import { 
     IsEmail, 
     IsString, 

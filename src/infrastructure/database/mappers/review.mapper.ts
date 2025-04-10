@@ -1,5 +1,3 @@
-// src/infrastructure/database/mappers/review.mapper.ts
-
 import { Injectable } from '@nestjs/common';
 import { Review } from '../../../core/domain/entities/review.entity';
 import { ReviewEntity } from '../entities/review.entity';

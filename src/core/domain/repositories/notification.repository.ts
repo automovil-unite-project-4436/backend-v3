@@ -1,5 +1,3 @@
-// src/core/domain/repositories/notification.repository.ts
-
 import { Notification } from '../entities/notification.entity';
 import { Rental } from '../entities/rental.entity';
 import { Vehicle } from '../entities/vehicle.entity';

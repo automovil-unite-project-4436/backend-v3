@@ -1,11 +1,9 @@
-// src/core/domain/entities/notification.entity.ts
-
 export class Notification {
     id: string;
     userId: string;
     title: string;
     message: string;
-    relatedId?: string; // ID relacionado (ej: ID de alquiler, vehículo, etc.)
+    relatedId?: string;
     isRead: boolean;
     createdAt: Date;
   

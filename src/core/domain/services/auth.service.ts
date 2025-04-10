@@ -1,5 +1,3 @@
-// src/core/application/services/auth.service.ts
-
 import { Injectable, Logger, UnauthorizedException, BadRequestException, ConflictException, Inject } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
@@ -35,8 +33,6 @@ export class AuthService {
   ) {
     this.bcryptSaltRounds = this.configService.get<number>('security.bcryptSaltRounds') || 10;
   }
-
-  // El resto del código del servicio se mantiene igual...
   
   /**
    * Registra un nuevo usuario
